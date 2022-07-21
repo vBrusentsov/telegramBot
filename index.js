@@ -17,23 +17,22 @@ const middlewareMatchToSplit = function (ctx, next){
 
     if(validateNumbers === true){
         return ctx.reply("Incorrect number entered")
-    } else {
-        return next()
     }
+        return next()
 }
 
 bot.command("dimagay", (ctx)=> ctx.reply("WHY ARE YOU GAy"));
 bot.command("start", (ctx) => ctx.reply("welcome! "));
 bot.command("stop", (ctx) => ctx.reply("Okay. I`m will sleep"));
 bot.command("add",middlewareMatchToSplit, (ctx) => {
-    let result = ctx.state.arguments.reduce((previousValue, currentValue) => {
+    const result = ctx.state.arguments.reduce((previousValue, currentValue) => {
         return +previousValue + +currentValue
     })
     return ctx.reply(result);
 })
 
 bot.command("subtract",middlewareMatchToSplit, (ctx) => {
-    let result = ctx.state.arguments.reduce((previousValue, currentValue) => {
+    const result = ctx.state.arguments.reduce((previousValue, currentValue) => {
         return +previousValue - +currentValue
     })
     return ctx.reply(result);
@@ -41,7 +40,7 @@ bot.command("subtract",middlewareMatchToSplit, (ctx) => {
 
 
 bot.command("multiply",middlewareMatchToSplit,  (ctx) => {
-    let result = ctx.state.arguments.reduce((previousValue, currentValue) => {
+    const result = ctx.state.arguments.reduce((previousValue, currentValue) => {
         return +previousValue * +currentValue
     })
     return ctx.reply(result);
@@ -52,8 +51,8 @@ bot.hears(/^\/.*/, (ctx) => {
 });
 
 
-bot.hears("Hello", async (ctx) => {
-    await ctx.reply("Hello", {
+bot.hears("Hello", (ctx) => {
+    ctx.reply("Hello", {
         reply_to_message_id: ctx.msg.message_id,
     })
 })
