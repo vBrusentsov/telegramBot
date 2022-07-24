@@ -9,6 +9,7 @@
   },
   "scripts": {
     "start": "node index.js",
+    "lint:prettier": "npx prettier --write .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -20,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/vBrusentsov/telegramBot/issues"
   },
-  "homepage": "https://github.com/vBrusentsov/telegramBot#readme"
+  "homepage": "https://github.com/vBrusentsov/telegramBot#readme",
+  "devDependencies": {
+    "prettier": "^2.7.1"
+  }
 }
