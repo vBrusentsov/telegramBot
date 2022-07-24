@@ -1,21 +1,25 @@
+const dotenv = require('dotenv')
 const { Bot } = require('grammy');
 
-const bot = new Bot('5532232117:AAG_8EgKVkKd04srN7B5aHLKatC3biacIHc');
+dotenv.config();
+
+const bot = new Bot(process.env.BOT_TOKEN);
+
 bot.use((ctx, next) => {
     ctx.state = {};
     return next();
 })
 
 const middlewareMatchToSplit = function (ctx, next){
-    if(ctx.match === ''){
+    if(!ctx.match){
         return ctx.reply("Please enter a number")
     }
     ctx.state.arguments = ctx.match.split(' ');
     const validateNumbers = ctx.state.arguments.some((elem) => {
-        return Number.isNaN(Number(elem))
+        return Number.isNaN(+(elem))
     })
 
-    if(validateNumbers === true){
+    if(validateNumbers){
         return ctx.reply("Incorrect number entered")
     }
         return next()
